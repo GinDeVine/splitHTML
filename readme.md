@@ -16,6 +16,7 @@ For some simple examples of splitHTML in use, see examples.html
 	Where X is any HTMLElement,
 		  Y is the tag name of the element each fragment will be captured within,
 		  Z is the where to split each fragment (String, not RegExp);
+		  (Y and Z are optional, the default being 'fragment' and '' respectively)
 
 To do something with each fragment, one can use
  

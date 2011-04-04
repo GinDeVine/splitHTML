@@ -2,7 +2,7 @@
 
 var Fe = Array.prototype.forEach
 HTMLElement.prototype.splitHTML = (function(){
-	var defTN = "splitmark"
+	var defTN = "fragment"
 	  , defSA = ""
 	  , black = ["script","style","canvas","audio","video","img"]
 	  , RegFn  = function(a) { return (a=a.substr(a.search(">")+1)).substr(0,a.search("<")) }
