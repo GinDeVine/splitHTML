@@ -1,0 +1,111 @@
+<html>
+<head>
+	<title>splitHTML examples</title>
+	<script src="splitHTML.js"></script>
+	<style>
+
+	div {width:777px;}
+	</style>
+	<script>
+	var useragent = navigator.userAgent;
+	var transform = ~useragent.search(/Chrome|Safari/)?"-webkit-transform":
+				   (~useragent.search(/Opera|Presto/)?"-o-transform":
+				   (~useragent.search(/Firefox|Gecko/)?"-moz-transform":
+				   (~useragent.search(/Trident|MSIE/)?"msTransform":
+				   (document.body.style.transform!==undefined)?'transform':0)))
+	function RainbowColor(i){
+		return "rgb("+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI))-.5)*2,0)*255^0)+","+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI/1.4))-.5)*2,0)*255^0)+","+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI/3))-.5)*2,0)*255^0)+")";
+	}
+	function RainbowLetters(){
+		var ele = document.querySelector("#makerainbows");
+		ele.splitHTML("rainbowletters");
+		Fe.call(document.querySelectorAll("rainbowletters"),function(a,i){
+			a.style.color = RainbowColor(i/11)
+		})
+	}
+	function RainbowWords(){
+		var ele = document.querySelector("#makerainbows2");
+		ele.splitHTML("rainbowletters"," ");
+		Fe.call(ele.querySelectorAll("rainbowletters"),function(a,i){
+			a.style.color = RainbowColor(i/3)
+		})
+	}
+	function TiltLetters(){
+		var rot = 40;
+		var ele = document.querySelector("#tiltletters");
+		ele.splitHTML("words"," ");
+		ele.splitHTML("letters","");
+		var s = document.styleSheets;
+		if(s.length==0)document.body.appendChild(document.createElement("style"));
+		s = s[s.length-1];
+		s.insertRule("words{display:inline-block;}",s.length-1);
+		Fe.call(ele.querySelectorAll("letters"),function(a){
+			a.style.display = "inline-block";
+			a.style.cssText += transform+":rotate("+((Math.random()*rot)-rot/2)+"deg);"
+		})
+	}
+	function Sideways(){
+		var ele = document.querySelector("#sideways");
+		ele.splitHTML("r90");
+		var s = document.styleSheets;
+		if(s.length==0)document.body.appendChild(document.createElement("style"));
+		s = s[s.length-1];
+		s.insertRule("#sideways r90{display:inline-block;"+transform+":rotate(-90deg);width:0.9em!important}",s.length-1);
+	}
+	function Sidewords(){
+		var ele = document.querySelector("#sidewords");
+		ele.splitHTML("r90"," ");
+		Fe.call(ele.querySelectorAll("r90"),function(a,i){
+			a.style.cssText = "display:inline-block;width:1.2em;"+transform+":rotate(-45deg);height:"+a.offsetWidth+"px;"
+		})
+	}
+	function Sinus(){
+		var ele = document.querySelector("#sinus");
+		ele.splitHTML("sine");
+		Fe.call(ele.querySelectorAll("sine"),function(a,i){
+			if(i>200)a.style.cssText = "display:inline-block;letter-spacing:2px;"+transform+":rotate("+Math.atan2(10*Math.cos(i/3)/3,a.offsetWidth)+"rad);position:relative;height:3em;top:"+Math.sin(i/3)*10+"px;color:rgb(100,100,"+(150+Math.random()*100^0)+");";
+			else a.style.cssText = "letter-spacing:2px;display:inline-block;position:relative;height:3em;top:"+Math.sin(i/3)*10+"px;color:rgb("+(100+Math.random()*50^0)+",50,200);";
+		})
+	}
+	window.onload = function(){
+		RainbowLetters();
+		RainbowWords();
+		TiltLetters();
+		Sideways();
+		Sidewords();
+		Sinus();
+	}
+	</script>
+</head>
+<body>
+
+<h2>Examples of splitHTML in use:</h2>
+
+<div id="tiltletters">
+	<h1>Still better than Comic Sans...</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+<div id="sideways">
+	<h1>Like Titanic: sideways!</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+<div id="sinus">
+	<h1>Ahoy!</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+
+<div id="makerainbows">
+	<h1>Aaaalways-</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+<div id="makerainbows2">
+	<h1>What does it mean?</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+<div id="sidewords">
+	<h1>I can't think of any more titles</h1>
+	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+</div>
+
+</body>
+</html>
