@@ -4,7 +4,7 @@
 	<script src="splitHTML.js"></script>
 	<style>
 
-	div {width:777px;}
+	div,h2 {width:777px;margin: 0 auto;}
 	</style>
 	<script>
 	var useragent = navigator.userAgent;
@@ -68,20 +68,49 @@
 			else a.style.cssText = "letter-spacing:2px;display:inline-block;position:relative;height:3em;top:"+Math.sin(i/3)*10+"px;color:rgb("+(100+Math.random()*50^0)+",50,200);";
 		})
 	}
+	function Evasion(){
+		var ele = document.querySelector("#intro");
+		ele.splitHTML("F","");
+		ele.style.height = ele.offsetHeight+"px";
+		var effs = ele.querySelectorAll("F");
+		Fe.call(effs,function(a){
+			a.y = a.offsetTop+a.offsetHeight/2;
+			a.x = a.offsetLeft+a.offsetWidth/2;
+		})
+		document.styleSheets[0].insertRule("#intro { color:#000}",0);
+		ele.onmousemove = function(ev){
+			var x = ev.pageX;
+			var y = ev.pageY;
+			Fe.call(effs,function(a){
+				var dy = y-a.y;
+				var dx = x-a.x;
+				if(Math.sqrt(dy*dy+dx*dx)<50)a.style.cssText = "color:#E97620;";
+				else a.style.cssText = "color:inherit;background-color:inherit;";
+			})
+		}
+	}
+	var backup, splitup,isSplit;
 	window.onload = function(){
+		backup = document.body.innerHTML;
 		RainbowLetters();
 		RainbowWords();
 		TiltLetters();
 		Sideways();
 		Sidewords();
 		Sinus();
+		Evasion()
+		splitup = document.body.innerHTML;
+		isSplit = true;
 	}
 	</script>
 </head>
 <body>
 
 <h2>Examples of splitHTML in use:</h2>
-
+<div id="intro"> 
+<h1> Intro, as well as an example (try hovering!)</h1>
+Everything you see below was once regular HTML, written without any excessive use of elements and quite readable in the source code. SplitHTML has split the plaintext content into fragments(letters/words) in each of the elements below and encapsulated them in new elements. The colors/waves/etc are added just to show what can be done by changing each of the new elements' properties, giving them a unique value. It can also, although I couldn't figure a good way to display it here, give you the computed position, size, etc of a selected fragment.<br/><br/><b>And now, for something <i>completely<sup>2</sup></i> different...</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
 <div id="tiltletters">
 	<h1>Still better than Comic Sans...</h1>
 	<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <b>Lorem <i>Ipsum</i></b> has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
