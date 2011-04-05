@@ -39,7 +39,8 @@
 		if(s.length==0)document.body.appendChild(document.createElement("style"));
 		s = s[s.length-1];
 		s.insertRule("words{display:inline-block;}",s.length-1);
-		Fe.call(ele.querySelectorAll("letters"),function(a){
+		Fe.call(ele.querySelectorAll("words"),function(a,i){s.insertRule("words:nth-child("+i+")::selection, words:nth-child("+i+") *::selection {color:"+RainbowColor(i/5)+";} ",s.length-1);})
+		Fe.call(ele.querySelectorAll("letters"),function(a,i){
 			a.style.display = "inline-block";
 			a.style.cssText += transform+":rotate("+((Math.random()*rot)-rot/2)+"deg);"
 		})
