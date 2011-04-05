@@ -12,7 +12,7 @@ splitHTML splits the all text nodes of a given element and captures all fragment
 It can be used to set a specific property to every fragment (letter/word/etc) or to get the value of one specific or all fragments, like position or width.
 For some simple examples of splitHTML in use, see examples.html.
 
-It could also be used in bookmarklets, bookmarklet.js contains both a template and examples of this.
+It could also be used in bookmarklets; bookmarklet.js contains both templates and examples for this.
 
 ### How to use?
 
