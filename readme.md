@@ -1,18 +1,17 @@
-## splitHTML
+# splitHTML
 
 
 ### What is splitHTML?
 
-splitHTML splits the all text nodes of a given element and captures all fragments within new elements of a chosen tag name.
+splitHTML splits every text node of a given element and captures all fragments within new elements of a chosen tag name.
 
-[demo](http://svrv.net/e/xperiments/splitHTML/examples.html)
+[Simple examples of splitHTML in use.](http://svrv.net/e/xperiments/splitHTML/examples.html)
 
 ### And it can be used for what exactly?
 
-It can be used to set a specific property to every fragment (letter/word/etc) or to get the value of one specific or all fragments, like position or width.
-For some simple examples of splitHTML in use, see examples.html.
+It can be used to set a specific property to every fragment (letter/word/etc) or to get the value of one specific or all fragments, like the computed position or size. Whether it could be used for anything useful or not, I do not actually know. I can only think of this used in amusing-one-time-and-forgotten-in-bookmarks-bar bookmarklets and single-purpose pages.
 
-It could also be used in bookmarklets; bookmarklet.js contains both templates and examples for this.
+For some simple examples of splitHTML in use, see examples.html or the online [demo](http://svrv.net/e/xperiments/splitHTML/examples.html), and see bookmarklet.js for both templates and examples of splitHTML used in bookmarklets.
 
 ### How to use?
 
@@ -36,8 +35,9 @@ To do something with each fragment, one can use
 
 ### Is it cross-browser?
 
-Any browser that have Array.forEach and Node.childNodes should work.
+Any browser that has Array.forEach and Node.childNodes should work.
 
-### Any problems I should know about?
+### Any problems one should know about?
 
-It has a tendency -- when splitting every letter -- to be very slow (>10s) on large Wikipedia articles. This might cause the browser to think the script has stopped, but it will finish if you let it wait.
+It has a tendency -- when splitting every letter -- to be very slow (>10s) on large Wikipedia articles. This might cause the browser to think the script has stopped, but it will finish if you let it wait. There's also one more thing: it seems that in 'p' elements, if there's an 'hX' or 'div' element inside, it won't go any further. I think this has to do with display:block and display:inline, though I haven't had time to look into it any further.
+
