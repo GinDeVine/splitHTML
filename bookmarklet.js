@@ -72,7 +72,34 @@ javascript:(function(F,b,s,r){
 
 
 
-/* Example of a bit customized version of the dynamic tag & split template: (rotates the letters, keeps words in line) */
+
+/* Example of a bit customized version of the static tag & split template: (rainbow letters) */
+
+javascript:(function(F,b,s,r){
+	s="search";F=Array[r="prototype"].forEach;b=["script","style","canvas","audio","video","img"];
+	function R(a){return (a=a.substr(a[s](">")+1)).substr(0,a[s]("<"))};
+	HTMLElement[r].H=function(P,C,O){
+		r="replace";
+		P=this,C=P.childNodes,O=C.length;
+		F.call(C,function(c,i){
+			if(!(c=C[i+C.length-O]))return;
+			i=c.nodeName.toLowerCase();
+			if(i=="#text"){
+				v=c.nodeValue;u="<F>"+v.split("").join("</F><F>")+"</F>";
+				if(~u[s](/\s/))u=u[r](/<F>\s*<\/F>/g,R);
+				if(~v[s](/<|>/))v=v[r](/</g,"&lt;")[r](/>/g,"&gt;");
+				P[i="innerHTML"]=P[i][r](v,u)
+			}else if(i!="f"&&!!c.H&&!~b.indexOf(i))c.H()
+		})
+	};
+	document.body.H();
+	F.call(document.querySelectorAll("f"),function(a,i){
+		i=i/11;a.style.color="rgb("+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI))-.5)*2,0)*255^0)+","+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI/1.4))-.5)*2,0)*255^0)+","+(Math.max((Math.abs(Math.sin(i+Math.PI/2+Math.PI/3))-.5)*2,0)*255^0)+")";
+	})
+
+}())
+
+/* Example of a bit customized version of the dynamic tag & split template: (rotates the letters, keeps words in line) (note: might be a bit buggy on some site layouts) */
 
 javascript:(function(F,b,B,D,T,U,s,r){
 	U=navigator.userAgent;D=document;B=D.body;

@@ -3,7 +3,9 @@
 
 ### What is splitHTML?
 
-splitHTML splits the all text nodes of a given element and captures all fragments within new elements of a chosen tag name. [demo](http://svrv.net/e/xperiments/splitHTML/examples.html)
+splitHTML splits the all text nodes of a given element and captures all fragments within new elements of a chosen tag name.
+
+[demo](http://svrv.net/e/xperiments/splitHTML/examples.html)
 
 ### And it can be used for what exactly?
 
